@@ -41,19 +41,19 @@ export function jsonToCsv(input: string): string {
     return res;
   };
 
-  const flattenedData = data.map((item) => flattenObject(item));
+  const flattenedData = data.map((item: any) => flattenObject(item));
 
   // Collect headers
   const headers = Array.from(
-    new Set(flattenedData.flatMap((obj) => Object.keys(obj)))
+    new Set(flattenedData.flatMap((obj: any) => Object.keys(obj)))
   );
 
   // CSV rows
   const csvRows = [
     headers.join(","), // header row
-    ...flattenedData.map((row) =>
+    ...flattenedData.map((row: any) =>
       headers
-        .map((field) => {
+        .map((field: any) => {
           const value = row[field] ?? "";
           const escaped = String(value).replace(/"/g, '""');
           return `"${escaped}"`;
